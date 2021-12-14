@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "263880414006",
+    "project_id": "foodshop-67770",
+    "storage_bucket": "foodshop-67770.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263880414006:android:51f9137e9e1a513a881997",
+        "android_client_info": {
+          "package_name": "com.samersaied.onlinefooddeliverysystem.onlinefooddeliverysystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "263880414006-9gu7j7kuagfog2tkt786s7l3pcrpd14l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.samersaied.onlinefooddeliverysystem.onlinefooddeliverysystem",
+            "certificate_hash": "863cc0c8a8e68b23fd59cb219bf7cd9d3debb315"
+          }
+        },
+        {
+          "client_id": "263880414006-nr9poihb948u532spsjd0uvdupr3ogmu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQVxlP8_vY9eHigCMlnKb4fzvMjfh5h84"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "263880414006-nr9poihb948u532spsjd0uvdupr3ogmu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "263880414006-9vopgp7bu8u45rdtenh6nffmuped13fo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.samersaied.onlinefooddeliverysystem.onlinefooddeliverysystem"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
