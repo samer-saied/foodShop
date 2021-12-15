@@ -8,8 +8,8 @@ import 'product_card_widget.dart';
 ProductModel tempProduct = ProductModel(
     productId: "productId",
     categoryId: "categoryId",
-    currentPrice: "400",
-    prePrice: "390",
+    currentPrice: {"small": "99"},
+    prePrice: {"small": "99"},
     status: "new",
     imageUrl:
         "https://storage.eu.content-cdn.io/cdn-cgi/image/width=300,height=300,quality=75,format=auto,fit=cover,g=top/am-resources/b43a9bb3-260a-4e1f-9be6-65a809fab6e1/Images/ProductImages/Source/Eg-Mnstr-cmbo.png",

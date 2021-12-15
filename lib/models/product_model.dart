@@ -4,8 +4,8 @@ class ProductModel {
   final String title;
   final String description;
   final String categoryId;
-  final String currentPrice;
-  final String prePrice;
+  final Map<String, dynamic> currentPrice;
+  final Map<String, dynamic> prePrice;
   final String status;
   final String available;
 

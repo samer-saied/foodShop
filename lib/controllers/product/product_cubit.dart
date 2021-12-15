@@ -21,6 +21,7 @@ class ProductCubit extends Cubit<ProductState> {
             .get()
             .then((QuerySnapshot querySnapshot) {
           for (QueryDocumentSnapshot doc in querySnapshot.docs) {
+            print(doc.data());
             ProductModel product = ProductModel(
               productId: doc.id,
               currentPrice: doc["currentPrice"],

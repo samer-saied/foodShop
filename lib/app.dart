@@ -50,12 +50,24 @@ class MyApp extends StatelessWidget {
               ),
               headline2: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 24,
+                fontSize: 20,
+                color: blackColor,
+              ),
+              headline3: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: blackColor,
+              ),
+              headline4: TextStyle(
+                fontSize: 16,
+                color: blackColor,
+              ),
+              headline5: TextStyle(
+                fontSize: 14,
                 color: blackColor,
               ),
               headline6: TextStyle(
-                fontWeight: FontWeight.normal,
-                // fontSize: 24,
+                fontSize: 12,
                 color: blackColor,
               ),
             ),

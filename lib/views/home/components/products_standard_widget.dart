@@ -41,21 +41,24 @@ class StandardProductsWidget extends StatelessWidget {
                                 product: products.products[index])));
                   },
                   child: Container(
+                    height: 100,
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey.withOpacity(0.10),
+                      color: backgroundColor,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         //////// ListTile Image //////////////////
-                        SizedBox(
-                            width: 75,
-                            child: CachedNetworkImage(
-                              imageUrl: state.products[index].imageUrl,
-                              fit: BoxFit.cover,
-                            )),
+                        Container(
+                          child: CachedNetworkImage(
+                            height: 100,
+                            width: MediaQuery.of(context).size.width * .25,
+                            imageUrl: state.products[index].imageUrl,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                         //////// ListTile sperated //////////////////
                         const SizedBox(
                           width: 10,
@@ -98,22 +101,21 @@ class StandardProductsWidget extends StatelessWidget {
                                 ],
                               ),
                               ////////// subTitle  //////////////////
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 5, right: 20),
-                                child: Text(
-                                    state.products[index].description
-                                        .toString(),
-                                    overflow: TextOverflow.ellipsis,
-                                    softWrap: false,
-                                    maxLines: 2,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .subtitle2!
-                                        .copyWith(color: greyColor)),
-                              ),
-                              const SizedBox(
-                                height: 5,
+                              Expanded(
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 5, right: 20),
+                                  child: Text(
+                                      state.products[index].description
+                                          .toString(),
+                                      overflow: TextOverflow.ellipsis,
+                                      softWrap: false,
+                                      maxLines: 2,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .subtitle2!
+                                          .copyWith(color: greyColor)),
+                                ),
                               ),
                               /////////   Price && add to cart ////////////////
                               Row(
@@ -122,9 +124,8 @@ class StandardProductsWidget extends StatelessWidget {
                                 children: [
                                   Row(
                                     children: [
-                                      double.parse(state
-                                                  .products[index].prePrice) >
-                                              0.0
+                                      (state.products[index].prePrice.values
+                                              .isNotEmpty)
                                           ? Padding(
                                               padding:
                                                   const EdgeInsets.symmetric(
@@ -132,8 +133,7 @@ class StandardProductsWidget extends StatelessWidget {
                                               child: Text(
                                                 "$currencyCode " +
                                                     state.products[index]
-                                                        .prePrice
-                                                        .toString() +
+                                                        .prePrice.values.first +
                                                     " ",
                                                 style: Theme.of(context)
                                                     .textTheme
@@ -159,6 +159,7 @@ class StandardProductsWidget extends StatelessWidget {
                                       ),
                                       Text(
                                         state.products[index].currentPrice
+                                            .values.first
                                             .toString(),
                                         style: Theme.of(context)
                                             .textTheme
@@ -248,21 +249,21 @@ class AddCartSecandWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        print("add to cart");
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          border: Border.all(
-              color: mainColor.withOpacity(.50), style: BorderStyle.solid),
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(5),
-              topRight: Radius.circular(5),
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.circular(10)),
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        border: Border.all(
+            color: mainColor.withOpacity(.50), style: BorderStyle.solid),
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(5),
+            topRight: Radius.circular(5),
+            bottomLeft: Radius.circular(10),
+            bottomRight: Radius.circular(10)),
+      ),
+      child: InkWell(
+        onTap: () {
+          print("add to cart 2");
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(
             vertical: 8,
