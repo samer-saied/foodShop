@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
 import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart';
-import 'package:onlinefooddeliverysystem/views/details/details_product_screen.dart';
+import 'package:onlinefooddeliverysystem/views/details/details_product_main_screen.dart';
 
 class StandardProductsWidget extends StatelessWidget {
   const StandardProductsWidget({Key? key}) : super(key: key);
@@ -13,8 +13,7 @@ class StandardProductsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     ////////////////////// Currency Code //////////////////////
     String currencyCode = "EGP";
-    ProductCubit products = BlocProvider.of<ProductCubit>(context)
-      ..getProducts();
+    ProductCubit products = BlocProvider.of<ProductCubit>(context);
     return BlocConsumer<ProductCubit, ProductState>(
       listener: (context, state) {
         // TODO: implement listener

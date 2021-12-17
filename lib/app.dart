@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => CategoryCubit(),
         ),
-        BlocProvider(
+        BlocProvider<ProductCubit>(
+          //lazy: false,
           create: (context) => ProductCubit(),
         ),
       ],

@@ -10,6 +10,7 @@ class ProductCubit extends Cubit<ProductState> {
 
   List<ProductModel> products = [];
   List<ProductModel> topProducts = [];
+  List<ProductModel> newProducts = [];
 
   getProducts() async {
     if (products.isEmpty) {
@@ -21,21 +22,12 @@ class ProductCubit extends Cubit<ProductState> {
             .get()
             .then((QuerySnapshot querySnapshot) {
           for (QueryDocumentSnapshot doc in querySnapshot.docs) {
-            print(doc.data());
-            ProductModel product = ProductModel(
-              productId: doc.id,
-              currentPrice: doc["currentPrice"],
-              prePrice: doc["prePrice"],
-              status: doc["status"],
-              categoryId: doc["categoryId"],
-              description: doc["description"],
-              imageUrl: doc["imageUrl"],
-              title: doc["title"],
-              available: doc['available'],
-            );
+            ProductModel product = ProductModel.fronJson(
+                doc.data() as Map<String, dynamic>, doc.id);
             products.add(product);
           }
         });
+        // getNewProducts();
         emit(ProductloadedState(products));
       } catch (error) {
         print(error.toString());
@@ -45,13 +37,29 @@ class ProductCubit extends Cubit<ProductState> {
   }
 
   getTopProducts() {
-    if (products.isEmpty) {
-      getProducts();
-    }
-    for (ProductModel product in products) {
-      if (product.status == 'top') {
-        topProducts.add(product);
+    if (products.isNotEmpty) {
+      topProducts = [];
+      for (ProductModel product in products) {
+        if (product.status == 'top') {
+          topProducts.add(product);
+        }
       }
     }
+  }
+
+  getNewProducts() async {
+    if (products.isEmpty) {
+      await getProducts();
+      print("Get allllll Products");
+    }
+    newProducts.clear();
+    print("rest new Products");
+
+    for (ProductModel product in products) {
+      if (product.status == 'new') {
+        newProducts.add(product);
+      }
+    }
+    print("finish");
   }
 }
