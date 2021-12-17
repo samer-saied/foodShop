@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ProductCubit>(
           //lazy: false,
-          create: (context) => ProductCubit(),
+          create: (context) => ProductCubit()..getProducts(),
         ),
       ],
       child: AnnotatedRegion<SystemUiOverlayStyle>(

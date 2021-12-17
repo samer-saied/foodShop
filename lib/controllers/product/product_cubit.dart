@@ -27,7 +27,8 @@ class ProductCubit extends Cubit<ProductState> {
             products.add(product);
           }
         });
-        // getNewProducts();
+        await getTopProducts();
+        await getNewProducts();
         emit(ProductloadedState(products));
       } catch (error) {
         print(error.toString());
@@ -36,30 +37,52 @@ class ProductCubit extends Cubit<ProductState> {
     }
   }
 
-  getTopProducts() {
-    if (products.isNotEmpty) {
-      topProducts = [];
-      for (ProductModel product in products) {
-        if (product.status == 'top') {
-          topProducts.add(product);
+  getProductsForce() async {
+    products.clear();
+    try {
+      emit(ProductloadingState());
+
+      await FirebaseFirestore.instance
+          .collection('products')
+          .get()
+          .then((QuerySnapshot querySnapshot) {
+        for (QueryDocumentSnapshot doc in querySnapshot.docs) {
+          ProductModel product =
+              ProductModel.fronJson(doc.data() as Map<String, dynamic>, doc.id);
+          products.add(product);
         }
+      });
+      await getTopProducts();
+      await getNewProducts();
+      emit(ProductloadedState(products));
+    } catch (error) {
+      print(error.toString());
+      emit(ProductErrorState(error.toString()));
+    }
+  }
+
+  getTopProducts() async {
+    if (products.isEmpty) {
+      print("emptyyyyyyy");
+      return;
+    }
+    topProducts.clear();
+    for (ProductModel product in products) {
+      if (product.status == 'top') {
+        topProducts.add(product);
       }
     }
   }
 
   getNewProducts() async {
     if (products.isEmpty) {
-      await getProducts();
-      print("Get allllll Products");
+      return;
     }
     newProducts.clear();
-    print("rest new Products");
-
     for (ProductModel product in products) {
       if (product.status == 'new') {
         newProducts.add(product);
       }
     }
-    print("finish");
   }
 }

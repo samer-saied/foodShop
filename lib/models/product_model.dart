@@ -24,13 +24,13 @@ class ProductModel {
   ProductModel.fronJson(Map<String, dynamic> json, productId)
       : productId = productId,
         categoryId = json['categoryId'],
-        prePrice = json['prePrice'],
+        prePrice = json['prePrice'] ?? {},
         currentPrice = json['currentPrice'],
-        status = json['status'],
+        status = json['status'] ?? 'normal',
         imageUrl = json['imageUrl'],
         title = json['title'],
         description = json['description'],
-        available = json['available'];
+        available = json['available'] ?? 'In Stock';
 
   Map<String, dynamic> toJson() {
     return {

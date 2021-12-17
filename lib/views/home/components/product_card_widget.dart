@@ -42,7 +42,7 @@ class ProductCardWidget extends StatelessWidget {
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: mediaQueryize.orientation == Orientation.portrait
-                    ? Theme.of(context).textTheme.bodyText1
+                    ? Theme.of(context).textTheme.headline6
                     : Theme.of(context).textTheme.subtitle1,
               ),
             ),
