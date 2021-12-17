@@ -50,7 +50,9 @@ class GridViewCardProductWidget extends StatelessWidget {
             }
             return Container(
                 width: MediaQuery.of(context).size.width,
-                child: Center(child: Text("No Products")));
+                child: Center(
+                    child:
+                        Text("No Products ,Please Select Now or Top Product")));
           },
         ),
       ),
