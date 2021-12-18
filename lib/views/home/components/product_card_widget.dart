@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
 import 'package:onlinefooddeliverysystem/models/product_model.dart';
+import 'package:onlinefooddeliverysystem/views/details/details_product_main_screen.dart';
 
 class ProductCardWidget extends StatelessWidget {
   final ProductModel product;
@@ -18,7 +19,8 @@ class ProductCardWidget extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          print("small  card product");
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => DetailsProductScreen(product: product)));
         },
         child: Stack(
           alignment: Alignment.topCenter,
