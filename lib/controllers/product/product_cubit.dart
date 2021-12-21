@@ -11,6 +11,7 @@ class ProductCubit extends Cubit<ProductState> {
   List<ProductModel> products = [];
   List<ProductModel> topProducts = [];
   List<ProductModel> newProducts = [];
+  List<ProductModel> selectedProduct = [];
 
   getProducts() async {
     if (products.isEmpty) {
@@ -22,7 +23,7 @@ class ProductCubit extends Cubit<ProductState> {
             .get()
             .then((QuerySnapshot querySnapshot) {
           for (QueryDocumentSnapshot doc in querySnapshot.docs) {
-            ProductModel product = ProductModel.fronJson(
+            ProductModel product = ProductModel.fromJson(
                 doc.data() as Map<String, dynamic>, doc.id);
             products.add(product);
           }
@@ -48,7 +49,7 @@ class ProductCubit extends Cubit<ProductState> {
           .then((QuerySnapshot querySnapshot) {
         for (QueryDocumentSnapshot doc in querySnapshot.docs) {
           ProductModel product =
-              ProductModel.fronJson(doc.data() as Map<String, dynamic>, doc.id);
+              ProductModel.fromJson(doc.data() as Map<String, dynamic>, doc.id);
           products.add(product);
         }
       });
@@ -84,5 +85,15 @@ class ProductCubit extends Cubit<ProductState> {
         newProducts.add(product);
       }
     }
+  }
+
+  getSelectedProduct({required String categoryId}) async {
+    selectedProduct.clear();
+    products.forEach((product) {
+      if (product.categoryId == categoryId) {
+        selectedProduct.add(product);
+        print(product.title + "-----------------------");
+      }
+    });
   }
 }

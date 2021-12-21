@@ -1,10 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
-import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart';
 import 'package:onlinefooddeliverysystem/models/product_model.dart';
 import 'package:onlinefooddeliverysystem/views/details/details_product_main_screen.dart';
-import 'package:onlinefooddeliverysystem/views/home/components/products_standard_widget.dart';
+import 'package:onlinefooddeliverysystem/views/home/components/category_products_Widget.dart';
 
 class NewProductsWidget extends StatelessWidget {
   final ProductModel product;

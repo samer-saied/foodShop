@@ -19,7 +19,6 @@ class GridViewCardProductWidget extends StatelessWidget {
           ? (mediaQueryize.size.height * 0.30) + 15.0
           : (mediaQueryize.size.height * 0.70) + 15.0,
       width: MediaQuery.of(context).size.width,
-      //padding: EdgeInsets.only(left: 10),
       child: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
@@ -51,8 +50,13 @@ class GridViewCardProductWidget extends StatelessWidget {
             return Container(
                 width: MediaQuery.of(context).size.width,
                 child: Center(
-                    child:
-                        Text("No Products ,Please Select Now or Top Product")));
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(CupertinoIcons.exclamationmark_circle),
+                    Text("No Products ,Please Select Now or Top Product"),
+                  ],
+                )));
           },
         ),
       ),
@@ -96,15 +100,3 @@ class MultiCardTopProductsWidget extends StatelessWidget {
     );
   }
 }
-
-// var tempProduct = ProductModel(
-//     productId: "productId",
-//     categoryId: "categoryId",
-//     currentPrice: {"sample": "400"},
-//     prePrice: {"sample": "400"},
-//     status: "new",
-//     imageUrl:
-//         "https://storage.eu.content-cdn.io/cdn-cgi/image/width=300,height=300,quality=75,format=auto,fit=cover,g=top/am-resources/b43a9bb3-260a-4e1f-9be6-65a809fab6e1/Images/ProductImages/Source/Eg-Mnstr-cmbo.png",
-//     title: "title Sandwitch fdfd",
-//     description: "description  alot of some word here",
-//     available: '');

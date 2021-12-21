@@ -7,13 +7,11 @@ class CategoryInitialState extends CategoryState {}
 
 class CategoryLoadingState extends CategoryState {}
 
-class CategoryChangeSelectedState extends CategoryState {}
+class CategoryLoadedSuccessState extends CategoryState {}
 
-class CategoryLoadedSuccessState extends CategoryState {
-  final List<CategoryModel> categories;
+class CategorychangeLoadingState extends CategoryState {}
 
-  CategoryLoadedSuccessState(this.categories);
-}
+class CategorychangeLoadedSuccessState extends CategoryState {}
 
 class CategoryErrorState extends CategoryState {
   final String error;

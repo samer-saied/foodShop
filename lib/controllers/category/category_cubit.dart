@@ -1,6 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart';
 import 'package:onlinefooddeliverysystem/models/category_model.dart';
 
 part 'category_state.dart';
@@ -9,7 +10,8 @@ class CategoryCubit extends Cubit<CategoryState> {
   CategoryCubit() : super(CategoryInitialState());
 
   List<CategoryModel> categories = [];
-  int selectedItem = 0;
+  String selectedItem = '';
+  int selectedItemIndex = 0;
 
   getCategories() async {
     if (categories.isEmpty) {
@@ -30,7 +32,10 @@ class CategoryCubit extends Cubit<CategoryState> {
             categories.add(category);
           }
         });
-        emit(CategoryLoadedSuccessState(categories));
+        if (categories.isNotEmpty) {
+          selectedItem = categories[0].categoryId;
+        }
+        emit(CategoryLoadedSuccessState());
       } catch (error) {
         print(error.toString());
         emit(CategoryErrorState(error.toString()));
@@ -38,9 +43,15 @@ class CategoryCubit extends Cubit<CategoryState> {
     }
   }
 
-  changeSelectedItem({required int itemId}) {
-    // emit(CategoryLoadingState());
-    selectedItem = itemId;
-    emit(CategoryChangeSelectedState());
+  changeSelectedItem(
+      {required int itemId, required BuildContext context}) async {
+    emit(CategorychangeLoadingState());
+
+    selectedItemIndex = itemId;
+    selectedItem = categories[itemId].categoryId;
+    print(selectedItem);
+    context.read<ProductCubit>().getSelectedProduct(categoryId: selectedItem);
+
+    emit(CategorychangeLoadedSuccessState());
   }
 }

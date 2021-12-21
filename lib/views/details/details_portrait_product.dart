@@ -4,7 +4,6 @@ import 'package:onlinefooddeliverysystem/constant/colors.dart';
 import 'package:onlinefooddeliverysystem/models/product_model.dart';
 
 import 'components/details_components.dart';
-import 'details_product_main_screen.dart';
 
 class DetailsPortraitViewWidget extends StatelessWidget {
   final ProductModel product;

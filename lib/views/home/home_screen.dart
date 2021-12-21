@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
 import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart';
+import 'package:onlinefooddeliverysystem/views/allproducts/all_products_widget.dart';
 
 import 'components/app_brand.dart';
 import 'components/banner_widget.dart';
 import 'components/categories_widget.dart';
 import 'components/gridview_product_widget.dart';
 import 'components/label_title_widget.dart';
-import 'components/products_standard_widget.dart';
+import 'components/category_products_Widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -40,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
               GridViewCardProductWidget(),
-              ///////////////////   Standard Products Section  ////////////////////
+              ///////////////////  Category Section  ////////////////////
               SizedBox(
                 height: 10,
               ),
@@ -48,17 +49,21 @@ class HomeScreen extends StatelessWidget {
                 title: "Products",
                 seeAllEnabled: true,
                 onTapSeeAll: () {
-                  print("samer");
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AllProductsWidget()));
                 },
               ),
               SizedBox(
                 height: 10,
               ),
               CategoriesWidget(),
+              ///////////////////   Standard Products Section  ////////////////////
               SizedBox(
                 height: 10,
               ),
-              StandardProductsWidget(),
+              CategoryProductsWidget(),
               SizedBox(
                 height: 15,
               )

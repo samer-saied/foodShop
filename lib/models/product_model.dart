@@ -21,7 +21,7 @@ class ProductModel {
     required this.available,
   });
 
-  ProductModel.fronJson(Map<String, dynamic> json, productId)
+  ProductModel.fromJson(Map<String, dynamic> json, productId)
       : productId = productId,
         categoryId = json['categoryId'],
         prePrice = json['prePrice'] ?? {},

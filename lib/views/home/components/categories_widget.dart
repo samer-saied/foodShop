@@ -27,7 +27,7 @@ class CategoriesWidget extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is CategoryLoadedSuccessState ||
-            state is CategoryChangeSelectedState) {
+            state is CategorychangeLoadedSuccessState) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: SizedBox(
@@ -40,7 +40,7 @@ class CategoriesWidget extends StatelessWidget {
                   shrinkWrap: true,
                   itemBuilder: (context, int selectedItem) {
                     return CategoryLabel(
-                        active: selectedItem == categoryCubit.selectedItem
+                        active: selectedItem == categoryCubit.selectedItemIndex
                             ? true
                             : false,
                         selected: selectedItem,
@@ -72,8 +72,9 @@ class CategoryLabel extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 5.0),
       child: GestureDetector(
         onTap: () {
+          ////////////////////        onTap     //////////////////////////////
           BlocProvider.of<CategoryCubit>(context)
-              .changeSelectedItem(itemId: selected);
+              .changeSelectedItem(itemId: selected, context: context);
         },
         child: Container(
           width: 90,
