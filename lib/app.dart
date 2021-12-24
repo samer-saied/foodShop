@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/themes.dart';
 import 'package:onlinefooddeliverysystem/controllers/category/category_cubit.dart';
 import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart';
+import 'package:onlinefooddeliverysystem/views/tab_bar_widget.dart';
 
 import 'controllers/banner/banner_cubit.dart';
-import 'views/home/home_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -16,14 +16,14 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => BannerCubit(),
-        ),
-        BlocProvider(
-          create: (context) => CategoryCubit(),
+          create: (context) => BannerCubit()..getBanners(),
         ),
         BlocProvider<ProductCubit>(
           //lazy: false,
           create: (context) => ProductCubit()..getProducts(),
+        ),
+        BlocProvider(
+          create: (context) => CategoryCubit()..getCategories(),
         ),
       ],
       child: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'food Shop',
           theme: ThemesStyle().defaultThemeStyle,
-          home: const HomeScreen(),
+          home: TabBarWidget(),
         ),
       ),
     );

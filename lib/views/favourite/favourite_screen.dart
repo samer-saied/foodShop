@@ -5,8 +5,8 @@ import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart'
 import 'package:onlinefooddeliverysystem/views/components/standard_products_widget.dart';
 import 'package:onlinefooddeliverysystem/views/home/components/category_products_Widget.dart';
 
-class AllProductsWidget extends StatelessWidget {
-  const AllProductsWidget({Key? key}) : super(key: key);
+class FavouriteScreen extends StatelessWidget {
+  const FavouriteScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class AllProductsWidget extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: mainColor,
         title: Text(
-          "All Products",
+          "Favourite",
           style: Theme.of(context)
               .textTheme
               .headline4!

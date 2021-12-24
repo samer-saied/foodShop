@@ -21,7 +21,7 @@ class LabelTitleWidget extends StatelessWidget {
         children: [
           Text(
             title,
-            style: Theme.of(context).textTheme.headline2,
+            style: Theme.of(context).textTheme.headline1,
           ),
           const Spacer(),
           seeAllEnabled
@@ -35,7 +35,7 @@ class LabelTitleWidget extends StatelessWidget {
                     "see all  > ",
                     style: Theme.of(context)
                         .textTheme
-                        .subtitle2!
+                        .headline5!
                         .copyWith(color: greyColor),
                   ),
                 )

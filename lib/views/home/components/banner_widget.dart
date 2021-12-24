@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
 import 'package:onlinefooddeliverysystem/controllers/banner/banner_cubit.dart';
 import 'package:onlinefooddeliverysystem/models/banner_model.dart';
+import 'package:shimmer/shimmer.dart';
 
 class BannerWidget extends StatelessWidget {
   const BannerWidget({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class BannerWidget extends StatelessWidget {
     ////////
     ///
     ///
-    BlocProvider.of<BannerCubit>(context).getBanners();
+    BannerCubit bannerCubit = BlocProvider.of<BannerCubit>(context);
     ////////
     ///
     ///
@@ -27,14 +28,13 @@ class BannerWidget extends StatelessWidget {
         ///
       },
       builder: (context, state) {
-        List<BannerModel> banners =
-            BlocProvider.of<BannerCubit>(context).banners;
+        List<BannerModel> banners = bannerCubit.banners;
         if (state is BannerLoadedState && banners.isNotEmpty) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: CarouselSlider(
               options: CarouselOptions(
-                height: 175.0,
+                height: 200.0,
                 viewportFraction: 0.90,
                 autoPlay: true,
                 autoPlayCurve: Curves.fastOutSlowIn,
@@ -107,7 +107,13 @@ class BannerWidget extends StatelessWidget {
             ),
           );
         }
-        return const Center(child: CupertinoActivityIndicator());
+        return Container(
+          child: Shimmer.fromColors(
+            baseColor: blackColor,
+            highlightColor: whiteColor,
+            child: Text("Loading"),
+          ),
+        );
       },
     );
   }

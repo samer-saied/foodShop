@@ -33,12 +33,13 @@ class DetailsLandscapeProductView extends StatelessWidget {
           ///////////////////////////  Product AppBar - Without Title - //////////////////////////
           AppBar(
             leading: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: GestureDetector(
                 onTap: () => Navigator.pop(context),
                 child: Container(
                   decoration: BoxDecoration(
-                      color: backgroundColor, shape: BoxShape.circle),
+                      color: backgroundColor,
+                      borderRadius: BorderRadius.circular(10)),
                   child: Icon(
                     Icons.arrow_back_ios_new_rounded,
                   ),
@@ -55,7 +56,7 @@ class DetailsLandscapeProductView extends StatelessWidget {
           ///////////////////////////  Product Details  Section //////////////////////////
           Positioned(
             right: 0,
-            bottom: 0,
+            bottom: MediaQuery.of(context).padding.bottom,
             top: 0,
             child: Stack(
               children: [
@@ -83,20 +84,29 @@ class DetailsLandscapeProductView extends StatelessWidget {
                     ),
                   ),
                 ),
+                ///////////////////////////  buttons  Section //////////////////////////
                 Positioned(
-                    bottom: 10,
+                    bottom: 8, //MediaQuery.of(context).padding.bottom + 5,
                     right: 5,
                     left: 5,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                      ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          AddCartButtonWidget(),
+                          Flexible(
+                            child: AddCartButtonWidget(),
+                            flex: 4,
+                          ),
                           SizedBox(
                             width: 10,
                           ),
-                          AddFavButtonWidget()
+                          Flexible(
+                            child: AddFavButtonWidget(),
+                            flex: 1,
+                          )
                         ],
                       ),
                     ))
@@ -130,7 +140,7 @@ class _DataProductLandscapeWidgetState
     return Container(
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
-        color: backgroundColor,
+        color: Colors.transparent,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(25),
           bottomLeft: Radius.circular(25),

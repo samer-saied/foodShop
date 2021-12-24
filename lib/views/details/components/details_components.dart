@@ -12,30 +12,28 @@ class AddCartButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: CupertinoButton(
-          color: mainColor,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.shopping_cart,
-                color: whiteColor,
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              Text("add to Cart",
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
-                      // fontSize: 14,
-                      fontWeight: FontWeight.w300,
-                      color: whiteColor)),
-            ],
-          ),
-          onPressed: () {
-            print("add to cart");
-          }),
-    );
+    return CupertinoButton(
+        color: mainColor,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(
+              CupertinoIcons.cart_fill_badge_plus,
+              color: whiteColor,
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            Text("add to Cart",
+                style: Theme.of(context).textTheme.headline3!.copyWith(
+                    // fontSize: 14,
+                    fontWeight: FontWeight.w300,
+                    color: whiteColor)),
+          ],
+        ),
+        onPressed: () {
+          print("add to cart");
+        });
   }
 }
 
@@ -65,7 +63,7 @@ class AddFavButtonWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                Icons.favorite_border,
+                CupertinoIcons.heart,
                 color: mainColor,
               ),
             ],

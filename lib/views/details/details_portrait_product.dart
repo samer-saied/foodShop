@@ -28,7 +28,7 @@ class DetailsPortraitViewWidget extends StatelessWidget {
           ),
           /////////////////////  Buttons  "ADD to cart  &&  LIKE " /////////////////////
           Positioned(
-              bottom: 10,
+              bottom: MediaQuery.of(context).padding.bottom + 5,
               right: 5,
               left: 5,
               child: Padding(
@@ -64,12 +64,13 @@ class DetailsPortraitWidget extends StatelessWidget {
       ///////////////////////////  Product AppBar - Title -   //////////////////////////
       appBar: AppBar(
         leading: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
           child: GestureDetector(
             onTap: () => Navigator.pop(context),
             child: Container(
-              decoration:
-                  BoxDecoration(color: backgroundColor, shape: BoxShape.circle),
+              decoration: BoxDecoration(
+                  color: backgroundColor,
+                  borderRadius: BorderRadius.circular(10)),
               child: Icon(
                 Icons.arrow_back_ios_new_rounded,
               ),
@@ -255,24 +256,29 @@ class _DataProductPortraitWidgetState extends State<DataProductPortraitWidget> {
                         });
                       },
                       child: Container(
-                        width: 75,
                         decoration: BoxDecoration(
                           border: Border.all(color: mainColor),
                           borderRadius: BorderRadius.circular(25),
                           color: selected == index ? mainColor : whiteColor,
                         ),
                         child: Center(
-                          child: Text(
-                            widget.product.currentPrice.keys.elementAt(index),
-                            style: selected == index
-                                ? Theme.of(context)
-                                    .textTheme
-                                    .subtitle2!
-                                    .copyWith(color: whiteColor)
-                                : Theme.of(context)
-                                    .textTheme
-                                    .subtitle2!
-                                    .copyWith(color: mainColor),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 0),
+                            child: Text(
+                              widget.product.currentPrice.keys.elementAt(index),
+                              style: selected == index
+                                  ? Theme.of(context)
+                                      .textTheme
+                                      .subtitle1!
+                                      .copyWith(color: whiteColor)
+                                  : Theme.of(context)
+                                      .textTheme
+                                      .subtitle1!
+                                      .copyWith(
+                                          color: mainColor,
+                                          fontWeight: FontWeight.normal),
+                            ),
                           ),
                         ),
                       ),

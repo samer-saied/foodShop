@@ -12,6 +12,7 @@ class ProductCubit extends Cubit<ProductState> {
   List<ProductModel> topProducts = [];
   List<ProductModel> newProducts = [];
   List<ProductModel> selectedProduct = [];
+  List<ProductModel> selectedProductByCat = [];
 
   getProducts() async {
     if (products.isEmpty) {
@@ -93,6 +94,15 @@ class ProductCubit extends Cubit<ProductState> {
       if (product.categoryId == categoryId) {
         selectedProduct.add(product);
         print(product.title + "-----------------------");
+      }
+    });
+  }
+
+  getSelectedProductByCategory({required String categoryId}) async {
+    selectedProductByCat.clear();
+    products.forEach((product) {
+      if (product.categoryId == categoryId) {
+        selectedProductByCat.add(product);
       }
     });
   }

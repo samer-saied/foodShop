@@ -11,8 +11,7 @@ class CategoriesWidget extends StatelessWidget {
     ////////
     ///
     ///
-    CategoryCubit categoryCubit = BlocProvider.of<CategoryCubit>(context)
-      ..getCategories();
+    CategoryCubit categoryCubit = BlocProvider.of<CategoryCubit>(context);
 
     ////////
     ///
@@ -31,7 +30,7 @@ class CategoriesWidget extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: SizedBox(
-              height: 35,
+              height: 40,
               width: MediaQuery.of(context).size.width,
               child: ListView.builder(
                   itemCount: categoryCubit.categories.length,
@@ -55,6 +54,7 @@ class CategoriesWidget extends StatelessWidget {
   }
 }
 
+//////////////////////////////////////////      Category chip     ///////////////////////////////////////////////////////////
 class CategoryLabel extends StatelessWidget {
   final int selected;
   final bool active;
@@ -77,7 +77,7 @@ class CategoryLabel extends StatelessWidget {
               .changeSelectedItem(itemId: selected, context: context);
         },
         child: Container(
-          width: 90,
+          width: MediaQuery.of(context).size.width * .29,
           decoration: BoxDecoration(
               color: active ? mainColor : whiteColor,
               borderRadius: BorderRadius.circular(5),

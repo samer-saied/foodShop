@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
               ),
               CategoryProductsWidget(),
               SizedBox(
-                height: 15,
+                height: MediaQuery.of(context).padding.bottom + 10,
               )
             ],
           ),
