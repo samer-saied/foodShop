@@ -36,11 +36,11 @@ class DetailsPortraitViewWidget extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    AddCartButtonWidget(),
+                    Expanded(child: AddCartButtonWidget()),
                     SizedBox(
                       width: 10,
                     ),
-                    AddFavButtonWidget()
+                    AddFavButtonWidget(product: product)
                   ],
                 ),
               ))
@@ -147,10 +147,11 @@ class _DataProductPortraitWidgetState extends State<DataProductPortraitWidget> {
         border: Border.all(color: mainColor.withOpacity(0.20)),
         boxShadow: [
           BoxShadow(
-              color: Colors.black.withAlpha(20),
-              blurRadius: 0.20,
-              spreadRadius: 5.0,
-              offset: Offset(5, 1))
+            color: Colors.black.withAlpha(20),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3),
+          )
         ],
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(25),

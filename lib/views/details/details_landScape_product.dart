@@ -104,7 +104,13 @@ class DetailsLandscapeProductView extends StatelessWidget {
                             width: 10,
                           ),
                           Flexible(
-                            child: AddFavButtonWidget(),
+                            ///////
+                            ///
+                            ///
+                            ///
+                            child: AddFavButtonWidget(
+                              product: product,
+                            ),
                             flex: 1,
                           )
                         ],

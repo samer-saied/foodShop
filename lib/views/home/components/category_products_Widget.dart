@@ -1,13 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
 import 'package:onlinefooddeliverysystem/controllers/category/category_cubit.dart';
 import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart';
-import 'package:onlinefooddeliverysystem/models/product_model.dart';
 import 'package:onlinefooddeliverysystem/views/components/standard_products_widget.dart';
-import 'package:onlinefooddeliverysystem/views/details/details_product_main_screen.dart';
 
 class CategoryProductsWidget extends StatelessWidget {
   const CategoryProductsWidget({Key? key}) : super(key: key);
@@ -46,6 +43,7 @@ class CategoryProductsWidget extends StatelessWidget {
                   products: productCubit.selectedProduct,
                   addCartEnabled: true,
                   dissmissEnabled: false,
+                  favEnabled: true,
                 ),
               );
             }

@@ -75,9 +75,13 @@ class NewProductsWidget extends StatelessWidget {
                     right: 7,
                     left: 7,
                     child: Padding(
-                      padding: EdgeInsets.only(right: 5, left: 5, top: 0),
+                      padding: EdgeInsets.only(
+                        right: 5,
+                        left: 5,
+                        top: 0,
+                      ),
                       child: Image(
-                        fit: BoxFit.fitWidth,
+                        fit: BoxFit.fitHeight,
                         image: AssetImage("assets/images/banner.png"),
                       ),
                     )),

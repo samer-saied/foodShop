@@ -1,11 +1,8 @@
-import 'dart:ui';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
 import 'package:onlinefooddeliverysystem/models/category_model.dart';
-import 'package:onlinefooddeliverysystem/views/allproducts/all_products_widget.dart';
 
 import '../one_category_screen.dart';
 

@@ -12,23 +12,25 @@ class AppBrand extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(left: 10.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CachedNetworkImage(
-                height: 30,
-                width: 30,
-                imageUrl:
-                    "https://freeiconshop.com/wp-content/uploads/edd/hotdog-outline-filled.png"),
+            Image(
+              image: AssetImage('assets/images/brand/brandicon.png'),
+              height: 30,
+            ),
+            // CachedNetworkImage(
+            //     height: 30,
+            //     width: 30,
+            //     imageUrl:
+            //         "https://freeiconshop.com/wp-content/uploads/edd/hotdog-outline-filled.png"),
             const SizedBox(
               width: 10,
             ),
-            const Text(
+            Text(
               "food Shop",
-              style: TextStyle(
-                color: mainColor,
-                fontSize: 26,
-                fontWeight: FontWeight.w900,
-              ),
+              style: Theme.of(context).textTheme.headline1!.copyWith(
+                    color: mainColor,
+                  ),
             ),
           ],
         ),

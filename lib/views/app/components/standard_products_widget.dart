@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
+import 'package:onlinefooddeliverysystem/controllers/fav/userfav_cubit.dart';
 import 'package:onlinefooddeliverysystem/models/product_model.dart';
 import 'package:onlinefooddeliverysystem/views/details/details_product_main_screen.dart';
 import 'package:onlinefooddeliverysystem/views/home/components/category_products_Widget.dart';
@@ -12,16 +14,18 @@ class ProductCardListWidget extends StatelessWidget {
   final String currencyCode;
   final bool addCartEnabled;
   final bool dissmissEnabled;
+  final bool favEnabled;
   Function? dissmissFunc;
 
-  ProductCardListWidget(
-      {Key? key,
-      required this.products,
-      required this.currencyCode,
-      required this.addCartEnabled,
-      required this.dissmissEnabled,
-      this.dissmissFunc})
-      : super(key: key);
+  ProductCardListWidget({
+    Key? key,
+    required this.products,
+    required this.currencyCode,
+    required this.addCartEnabled,
+    required this.dissmissEnabled,
+    this.dissmissFunc,
+    required this.favEnabled,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +41,7 @@ class ProductCardListWidget extends StatelessWidget {
           product: products[index],
           currencyCode: currencyCode,
           addCartEnabled: false,
+          favEnabled: favEnabled,
         );
       },
     );
@@ -49,12 +54,14 @@ class SingleProductCardWidget extends StatelessWidget {
   final ProductModel product;
   final String currencyCode;
   final bool addCartEnabled;
-  const SingleProductCardWidget(
-      {Key? key,
-      required this.product,
-      required this.currencyCode,
-      required this.addCartEnabled})
-      : super(key: key);
+  final bool favEnabled;
+  const SingleProductCardWidget({
+    Key? key,
+    required this.product,
+    required this.currencyCode,
+    required this.addCartEnabled,
+    required this.favEnabled,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -110,24 +117,24 @@ class SingleProductCardWidget extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           clipBehavior: Clip.antiAlias,
                           decoration: BoxDecoration(
-                            //color: mainColor,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: InkWell(
-                            ///////////////////////////////////////////////////////////////////////////////////
-                            ///
-                            ///
-                            ///     to do
-                            ///
-                            ///
-                            ///
-                            onTap: () => print("object"),
-                            child: Icon(
-                              CupertinoIcons.heart,
-                              color: mainColor,
-                              // size: 20,
-                            ),
-                          ),
+                          child: favEnabled
+                              ? InkWell(
+                                  onTap: favEnabled
+                                      ? () {
+                                          BlocProvider.of<UserfavCubit>(context)
+                                              .toggleLocalFav(
+                                                  product.productId);
+                                        }
+                                      : () {},
+                                  child: Icon(
+                                    CupertinoIcons.heart,
+                                    color: mainColor,
+                                    // size: 20,
+                                  ),
+                                )
+                              : SizedBox(),
                         )
                       ],
                     ),

@@ -18,12 +18,12 @@ class ThemesStyle {
       ),
       headline1: TextStyle(
         fontWeight: FontWeight.bold,
-        fontSize: 24,
+        fontSize: 30,
         color: blackColor,
       ),
       headline2: TextStyle(
         fontWeight: FontWeight.bold,
-        fontSize: 20,
+        fontSize: 28,
         color: blackColor,
       ),
       headline3: TextStyle(

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
 import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart';
 import 'package:onlinefooddeliverysystem/models/category_model.dart';
+import 'package:onlinefooddeliverysystem/views/app/components/app_components.dart';
 import 'package:onlinefooddeliverysystem/views/components/standard_products_widget.dart';
 
 class OneCategoryScreen extends StatelessWidget {
@@ -38,6 +39,7 @@ class OneCategoryScreen extends StatelessWidget {
                               context.read<ProductCubit>().selectedProductByCat,
                           addCartEnabled: true,
                           dissmissEnabled: false,
+                          favEnabled: true,
                         ),
                       ),
                       SizedBox(
@@ -61,42 +63,11 @@ class OneCategoryScreen extends StatelessWidget {
 
           ///
           //////////////////////// Red Banner - title & Back button - ////////////////////////
-          Positioned(
-              top: MediaQuery.of(context).padding.top,
-              left: 0,
-              child: Container(
-                // height: 70,
-                //width: MediaQuery.of(context).size.width * .3,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                  child: Row(
-                    children: [
-                      InkWell(
-                        onTap: () => Navigator.pop(context),
-                        child: Icon(
-                          CupertinoIcons.back,
-                          color: whiteColor,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(category.title,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline2!
-                              .copyWith(color: whiteColor)),
-                    ],
-                  ),
-                ),
-                decoration: BoxDecoration(
-                    color: mainColor,
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(25),
-                      bottomRight: Radius.circular(25),
-                    )),
-              )),
+          TitleSliderWidget(
+            titleTxt: category.title,
+            prefixIcon: SizedBox(),
+            backAvaiable: true,
+          ),
         ],
       ),
     );

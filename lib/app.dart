@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/themes.dart';
 import 'package:onlinefooddeliverysystem/controllers/category/category_cubit.dart';
+import 'package:onlinefooddeliverysystem/controllers/fav/userfav_cubit.dart';
 import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart';
 import 'package:onlinefooddeliverysystem/views/tab_bar_widget.dart';
 
@@ -24,6 +25,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CategoryCubit()..getCategories(),
+        ),
+        BlocProvider(
+          // lazy: false,
+          create: (context) => UserfavCubit()..getLocalFavIDs(),
         ),
       ],
       child: AnnotatedRegion<SystemUiOverlayStyle>(

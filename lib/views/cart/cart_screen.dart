@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
 import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart';
+import 'package:onlinefooddeliverysystem/views/app/components/app_components.dart';
 import 'package:onlinefooddeliverysystem/views/components/standard_products_widget.dart';
 
 class CartScreen extends StatelessWidget {
@@ -29,6 +30,7 @@ class CartScreen extends StatelessWidget {
                     products: context.read<ProductCubit>().products,
                     addCartEnabled: true,
                     dissmissEnabled: false,
+                    favEnabled: true,
                   ),
                 ),
                 SizedBox(
@@ -40,38 +42,14 @@ class CartScreen extends StatelessWidget {
         },
       ),
       //////////////////////// App Bar ////////////////////////
-      Positioned(
-          top: MediaQuery.of(context).padding.top,
-          left: 0,
-          child: Container(
-            // height: 70,
-            //width: MediaQuery.of(context).size.width * .3,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-              child: Row(
-                children: [
-                  Icon(
-                    CupertinoIcons.cart_fill,
-                    color: whiteColor,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text("Cart",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline2!
-                          .copyWith(color: whiteColor)),
-                ],
-              ),
-            ),
-            decoration: BoxDecoration(
-                color: mainColor,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(25),
-                  bottomRight: Radius.circular(25),
-                )),
-          )),
+      TitleSliderWidget(
+        titleTxt: 'Cart',
+        prefixIcon: Icon(
+          CupertinoIcons.cart_fill,
+          color: whiteColor,
+        ),
+        backAvaiable: false,
+      ),
     ]));
   }
 }

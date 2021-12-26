@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
+import 'package:onlinefooddeliverysystem/controllers/fav/userfav_cubit.dart';
+
 import 'package:onlinefooddeliverysystem/models/product_model.dart';
 
 ///////////////////////         ADD TO CART Button    ///////////////////////////////
@@ -38,38 +41,66 @@ class AddCartButtonWidget extends StatelessWidget {
 }
 
 ///////////////////////         ADD FAV Button    //////////////////////////////////
-class AddFavButtonWidget extends StatelessWidget {
-  const AddFavButtonWidget({
+class AddFavButtonWidget extends StatefulWidget {
+  final ProductModel product;
+  AddFavButtonWidget({
     Key? key,
+    required this.product,
   }) : super(key: key);
 
   @override
+  State<AddFavButtonWidget> createState() => _AddFavButtonWidgetState();
+}
+
+class _AddFavButtonWidgetState extends State<AddFavButtonWidget> {
+  late bool isfav;
+  @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        print("Like");
-      },
-      child: Container(
-        decoration: BoxDecoration(
-            color: whiteColor,
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(color: mainColor)),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 12,
-            horizontal: 15,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                CupertinoIcons.heart,
-                color: mainColor,
+    isfav = BlocProvider.of<UserfavCubit>(context)
+        .checkProductIsFav(widget.product.productId);
+    print(isfav.toString() + '----------------------------------------');
+    return BlocBuilder<UserfavCubit, UserfavState>(
+      builder: (context, state) {
+        if (state is FavloadedState) {
+          return InkWell(
+            onTap: () {
+              print("Like");
+              BlocProvider.of<UserfavCubit>(context)
+                  .toggleLocalFav(widget.product.productId);
+              setState(() {
+                isfav = !isfav;
+              });
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  color: whiteColor,
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(color: mainColor)),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                  horizontal: 15,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    isfav
+                        ? Icon(
+                            CupertinoIcons.heart_fill,
+                            color: mainColor,
+                          )
+                        : Icon(
+                            CupertinoIcons.heart,
+                            color: mainColor,
+                          ),
+                  ],
+                ),
               ),
-            ],
-          ),
-        ),
-      ),
+            ),
+          );
+        }
+        return CupertinoActivityIndicator();
+      },
     );
   }
 }
@@ -94,6 +125,12 @@ class ImageBGWidget extends StatelessWidget {
         Container(
           height: imageHeight,
           width: imagewidth,
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(25),
+            bottomRight: Radius.circular(25),
+          )),
           child: CachedNetworkImage(
             imageUrl: product.imageUrl,
             fit: BoxFit.cover,

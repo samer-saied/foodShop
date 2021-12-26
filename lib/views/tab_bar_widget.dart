@@ -5,6 +5,8 @@ import 'package:onlinefooddeliverysystem/views/cart/cart_screen.dart';
 import 'package:onlinefooddeliverysystem/views/favourite/favourite_screen.dart';
 import 'package:onlinefooddeliverysystem/views/home/home_screen.dart';
 import 'package:onlinefooddeliverysystem/views/profile/profile_screen.dart';
+import 'package:onlinefooddeliverysystem/views/user/login_screen.dart';
+import 'package:onlinefooddeliverysystem/views/user/register_screen.dart';
 
 import 'categories/categories_screen.dart';
 
@@ -18,6 +20,8 @@ class TabBarWidget extends StatefulWidget {
 class _TabBarWidgetState extends State<TabBarWidget> {
   @override
   Widget build(BuildContext context) {
+    //   return LoginScreen();
+    // }
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
         activeColor: mainColor,
@@ -74,7 +78,7 @@ class _TabBarWidgetState extends State<TabBarWidget> {
                 }
               case 4:
                 {
-                  return ProfileScreen();
+                  return LoginScreen();
                 }
             }
 

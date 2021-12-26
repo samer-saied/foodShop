@@ -6,3 +6,5 @@ const Color greyColor = Colors.black54;
 const Color blackColor = Colors.black;
 const Color redColor = Colors.red;
 Color backgroundColor = Colors.grey.shade200;
+
+//const Color mainColor = Color(0xFFfcc647);

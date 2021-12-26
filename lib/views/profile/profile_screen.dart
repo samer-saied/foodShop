@@ -32,6 +32,7 @@ class ProfileScreen extends StatelessWidget {
                     products: context.read<ProductCubit>().products,
                     addCartEnabled: true,
                     dissmissEnabled: false,
+                    favEnabled: false,
                   ),
                 ),
                 SizedBox(
