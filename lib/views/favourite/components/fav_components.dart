@@ -8,8 +8,8 @@ import 'package:onlinefooddeliverysystem/controllers/fav/fav_bloc.dart';
 import 'package:onlinefooddeliverysystem/models/product_model.dart';
 
 ///////////////////////         ADD TO CART Button    ///////////////////////////////
-class AddCartButtonWidget extends StatelessWidget {
-  const AddCartButtonWidget({
+class FavListViewWidget extends StatelessWidget {
+  const FavListViewWidget({
     Key? key,
   }) : super(key: key);
 
@@ -58,7 +58,7 @@ class _AddFavButtonWidgetState extends State<AddFavButtonWidget> {
   Widget build(BuildContext context) {
     // isfav = BlocProvider.of<FavBloc>(context)
     //     .checkProductIsFav(widget.product.productId);
-    // print(isfav.toString() + '----------------------------------------');
+    print(isfav.toString() + '----------------------------------------');
     return BlocBuilder<FavBloc, FavState>(
       builder: (context, state) {
         if (state is FavloadedState) {

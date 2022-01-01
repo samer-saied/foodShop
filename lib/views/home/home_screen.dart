@@ -6,10 +6,10 @@ import 'package:onlinefooddeliverysystem/views/allproducts/all_products_widget.d
 
 import 'components/app_brand.dart';
 import 'components/banner_widget.dart';
-import 'components/categories_widget.dart';
-import 'components/gridview_product_widget.dart';
-import 'components/label_title_widget.dart';
-import 'components/category_products_Widget.dart';
+import 'components/category/categories_list_widget.dart';
+import 'components/category/category_products_Widget.dart';
+import '../app/components/label_title_widget.dart';
+import 'components/product/gridview_product_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

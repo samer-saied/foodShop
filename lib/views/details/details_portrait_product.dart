@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
 import 'package:onlinefooddeliverysystem/models/product_model.dart';
+import 'package:onlinefooddeliverysystem/views/app/components/single_product_card_widget.dart';
 
 import 'components/details_components.dart';
 
@@ -40,7 +41,22 @@ class DetailsPortraitViewWidget extends StatelessWidget {
                     SizedBox(
                       width: 10,
                     ),
-                    AddFavButtonWidget(product: product)
+                    Container(
+                      decoration: BoxDecoration(
+                          color: backgroundColor,
+                          border: Border.all(
+                            style: BorderStyle.solid,
+                            color: mainColor,
+                          ),
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: HeartFavButtonWidget(
+                          productID: product.productId,
+                          heartSize: 35,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ))

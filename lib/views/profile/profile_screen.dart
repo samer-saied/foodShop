@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
 import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart';
-import 'package:onlinefooddeliverysystem/views/components/standard_products_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -27,13 +26,7 @@ class ProfileScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0),
-                  child: ProductCardListWidget(
-                    currencyCode: 'EGP',
-                    products: context.read<ProductCubit>().products,
-                    addCartEnabled: true,
-                    dissmissEnabled: false,
-                    favEnabled: false,
-                  ),
+                  child: Text("profile"),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).padding.bottom + 10,

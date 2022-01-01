@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
-import 'package:onlinefooddeliverysystem/views/app/components/app_components.dart';
 import 'package:onlinefooddeliverysystem/views/user/register_screen.dart';
 
 import 'components/login_register_comp.dart';

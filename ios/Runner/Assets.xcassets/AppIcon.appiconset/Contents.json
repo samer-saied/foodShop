@@ -125,35 +125,6 @@
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
-    },
-    {
-      "filename" : "167-1.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "172.png",
-      "idiom" : "universal",
-      "scale" : "1x",
-      "unassigned" : true
-    },
-    {
-      "filename" : "180-1.png",
-      "idiom" : "universal",
-      "scale" : "1x",
-      "unassigned" : true
-    },
-    {
-      "filename" : "196.png",
-      "idiom" : "universal",
-      "scale" : "1x",
-      "unassigned" : true
-    },
-    {
-      "filename" : "216.png",
-      "idiom" : "universal",
-      "scale" : "1x",
-      "unassigned" : true
     }
   ],
   "info" : {

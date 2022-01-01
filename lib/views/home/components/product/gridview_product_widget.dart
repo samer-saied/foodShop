@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart';
-import 'package:onlinefooddeliverysystem/views/home/components/new_product_widget.dart';
-import 'package:onlinefooddeliverysystem/views/home/components/product_card_widget.dart';
+
+import 'new_product_widget.dart';
+import 'product_card_widget.dart';
 
 class GridViewCardProductWidget extends StatelessWidget {
   const GridViewCardProductWidget({Key? key}) : super(key: key);

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/themes.dart';
+import 'package:onlinefooddeliverysystem/controllers/cart/cart_bloc.dart';
 import 'package:onlinefooddeliverysystem/controllers/category/category_cubit.dart';
-import 'package:onlinefooddeliverysystem/controllers/fav/userfav_cubit.dart';
+import 'package:onlinefooddeliverysystem/controllers/fav/fav_bloc.dart';
 import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart';
 import 'package:onlinefooddeliverysystem/views/tab_bar_widget.dart';
 
@@ -27,9 +28,9 @@ class MyApp extends StatelessWidget {
           create: (context) => CategoryCubit()..getCategories(),
         ),
         BlocProvider(
-          // lazy: false,
-          create: (context) => UserfavCubit()..getLocalFavIDs(),
+          create: (context) => FavBloc()..add(FavInitEvent()),
         ),
+        BlocProvider(create: (context) => CartBloc()),
       ],
       child: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.dark,

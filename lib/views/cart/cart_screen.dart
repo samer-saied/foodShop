@@ -2,20 +2,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
-import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart';
+import 'package:onlinefooddeliverysystem/controllers/cart/cart_bloc.dart';
+import 'package:onlinefooddeliverysystem/views/allproducts/all_products_widget.dart';
 import 'package:onlinefooddeliverysystem/views/app/components/app_components.dart';
-import 'package:onlinefooddeliverysystem/views/components/standard_products_widget.dart';
+
+import 'cart_components.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<CartBloc>(context).add(CartInitEvent());
+
     return Scaffold(
         body: Stack(alignment: Alignment.topCenter, children: [
-      //////////////////////// List of Products ////////////////////////
-      BlocBuilder<ProductCubit, ProductState>(
-        builder: (context, state) {
+      //////////////////////// List of Cart Items ////////////////////////
+      BlocBuilder<CartBloc, CartState>(builder: (context, state) {
+        if (state is CartLoading) {
+          return Center(child: CupertinoActivityIndicator());
+        } else if (state is CartLoaded) {
           return SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Column(
@@ -24,23 +30,92 @@ class CartScreen extends StatelessWidget {
                   height: MediaQuery.of(context).padding.top + 50,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10.0),
-                  child: ProductCardListWidget(
-                    currencyCode: 'EGP',
-                    products: context.read<ProductCubit>().products,
-                    addCartEnabled: true,
-                    dissmissEnabled: false,
-                    favEnabled: true,
-                  ),
-                ),
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      padding: EdgeInsets.zero,
+                      scrollDirection: Axis.vertical,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: context.read<CartBloc>().cart.cartItems.length,
+                      itemBuilder: (context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: Dismissible(
+                            key: Key(context.read<CartBloc>().cart.cartID),
+                            direction: DismissDirection.endToStart,
+                            onDismissed: (dismissDirection) {
+                              //////////
+                              ///
+                              ///
+                              ///
+                            },
+                            background: Container(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Remove",
+                                      textAlign: TextAlign.end,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline5!
+                                          .copyWith(color: whiteColor),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                //  borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                            child: SingleCartCardWidget(
+                              cartItem: context
+                                  .read<CartBloc>()
+                                  .cart
+                                  .cartItems[index],
+                              currencyCode: 'EGP',
+                            ),
+                          ),
+                        );
+                      },
+                    )),
                 SizedBox(
                   height: MediaQuery.of(context).padding.bottom + 10,
                 )
               ],
             ),
           );
-        },
-      ),
+        } else {
+          return SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(CupertinoIcons.exclamationmark_circle),
+                SizedBox(
+                  height: 5,
+                ),
+                Text('No items on your cart'),
+                TextButton(
+                    onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => AllProductsWidget())),
+                    child: Text(
+                      'Explore',
+                      style: TextStyle(
+                        color: mainColor,
+                      ),
+                    ))
+              ],
+            ),
+          );
+        }
+      }),
       //////////////////////// App Bar ////////////////////////
       TitleSliderWidget(
         titleTxt: 'Cart',

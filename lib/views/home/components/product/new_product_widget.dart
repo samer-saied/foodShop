@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
 import 'package:onlinefooddeliverysystem/models/product_model.dart';
 import 'package:onlinefooddeliverysystem/views/details/details_product_main_screen.dart';
-import 'package:onlinefooddeliverysystem/views/home/components/category_products_Widget.dart';
 
+//////////////////////////    New  Products  Widget  /////////////////////////////////
 class NewProductsWidget extends StatelessWidget {
   final ProductModel product;
   const NewProductsWidget({Key? key, required this.product}) : super(key: key);
@@ -111,6 +111,58 @@ class NewProductsWidget extends StatelessWidget {
               ],
             ),
           )),
+    );
+  }
+}
+
+//////////////////////////    Add to Cart Secand Button    2  /////////////////////////////////
+class AddCartSecandWidget extends StatelessWidget {
+  const AddCartSecandWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        border: Border.all(
+            color: mainColor.withOpacity(.50), style: BorderStyle.solid),
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(5),
+            topRight: Radius.circular(5),
+            bottomLeft: Radius.circular(10),
+            bottomRight: Radius.circular(10)),
+      ),
+      child: InkWell(
+        onTap: () {
+          print("add to cart 2");
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 8,
+            horizontal: 8,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.shopping_cart,
+                color: mainColor,
+                size: 14,
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              Text("add to cart",
+                  style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300,
+                      color: mainColor)),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

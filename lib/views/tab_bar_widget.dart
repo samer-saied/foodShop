@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
-import 'package:onlinefooddeliverysystem/views/allproducts/all_products_widget.dart';
 import 'package:onlinefooddeliverysystem/views/cart/cart_screen.dart';
 import 'package:onlinefooddeliverysystem/views/favourite/favourite_screen.dart';
 import 'package:onlinefooddeliverysystem/views/home/home_screen.dart';
-import 'package:onlinefooddeliverysystem/views/profile/profile_screen.dart';
 import 'package:onlinefooddeliverysystem/views/user/login_screen.dart';
-import 'package:onlinefooddeliverysystem/views/user/register_screen.dart';
 
 import 'categories/categories_screen.dart';
 

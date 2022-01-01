@@ -108,10 +108,20 @@ class BannerWidget extends StatelessWidget {
           );
         }
         return Container(
+          height: 200,
           child: Shimmer.fromColors(
             baseColor: blackColor,
             highlightColor: whiteColor,
-            child: Text("Loading"),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  height: 200,
+                  width: MediaQuery.of(context).size.width,
+                  child: CupertinoActivityIndicator(),
+                  decoration: BoxDecoration(
+                      color: greyColor.withOpacity(.10),
+                      borderRadius: BorderRadius.circular(5))),
+            ),
           ),
         );
       },
