@@ -98,7 +98,9 @@ class DetailsLandscapeProductView extends StatelessWidget {
                         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Flexible(
-                            child: AddCartButtonWidget(),
+                            child: AddCartButtonWidget(
+                              product: product,
+                            ),
                             flex: 4,
                           ),
                           SizedBox(

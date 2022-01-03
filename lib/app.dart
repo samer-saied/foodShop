@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/themes.dart';
 import 'package:onlinefooddeliverysystem/controllers/cart/cart_bloc.dart';
+import 'package:onlinefooddeliverysystem/controllers/cart/cart_bloc.dart';
 import 'package:onlinefooddeliverysystem/controllers/category/category_cubit.dart';
 import 'package:onlinefooddeliverysystem/controllers/fav/fav_bloc.dart';
 import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => FavBloc()..add(FavInitEvent()),
         ),
-        BlocProvider(create: (context) => CartBloc()),
+        BlocProvider(create: (context) => CartBloc()..add(CartInitEvent())),
       ],
       child: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.dark,

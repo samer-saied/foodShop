@@ -9,7 +9,7 @@ class ThemesStyle {
     textTheme: const TextTheme(
       subtitle1: TextStyle(
         fontWeight: FontWeight.bold,
-        fontSize: 16,
+        fontSize: 15,
       ),
       subtitle2: TextStyle(
         fontWeight: FontWeight.normal,

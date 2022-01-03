@@ -52,19 +52,27 @@ class NewProductsWidget extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        /////////// Product Name ////////////
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 0, right: 5, left: 5, bottom: 5),
-                          child: Text(
-                            product.title,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.subtitle1,
-                          ),
+                        SizedBox(
+                          height: 3,
                         ),
-                        AddCartSecandWidget(),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            /////////// Product Name ////////////
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 0, right: 5, left: 5, bottom: 5),
+                              child: Text(
+                                product.title.toUpperCase(),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.subtitle1,
+                              ),
+                            ),
+                            AddCartSecandWidget(),
+                          ],
+                        )
                       ],
                     ),
                   ),
@@ -157,7 +165,7 @@ class AddCartSecandWidget extends StatelessWidget {
               Text("add to cart",
                   style: Theme.of(context).textTheme.subtitle2!.copyWith(
                       fontSize: 14,
-                      fontWeight: FontWeight.w300,
+                      fontWeight: FontWeight.bold,
                       color: mainColor)),
             ],
           ),

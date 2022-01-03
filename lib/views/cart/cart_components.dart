@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
 import 'package:onlinefooddeliverysystem/models/cart_item_model.dart';
-import 'package:onlinefooddeliverysystem/views/details/details_product_main_screen.dart';
 
 class SingleCartCardWidget extends StatelessWidget {
   final CartItemModel cartItem;
@@ -21,15 +20,15 @@ class SingleCartCardWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: InkWell(
         onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      DetailsProductScreen(product: cartItem.product)));
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (context) =>
+          //             DetailsProductScreen(product: cartItem.)));
         },
         //////// Card Size & shap //////////////////
         child: Container(
-          height: 120,
+          height: 80,
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -41,9 +40,9 @@ class SingleCartCardWidget extends StatelessWidget {
               //////// ListTile Image //////////////////
               Container(
                 child: CachedNetworkImage(
-                  height: 120,
+                  height: 80,
                   width: MediaQuery.of(context).size.width * .25,
-                  imageUrl: cartItem.product.imageUrl,
+                  imageUrl: cartItem.productUrl,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -58,7 +57,7 @@ class SingleCartCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ////////// Title  //////////////////
-                    Text(cartItem.product.title.toUpperCase(),
+                    Text(cartItem.productTitle.toUpperCase(),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.subtitle1),
@@ -81,8 +80,7 @@ class SingleCartCardWidget extends StatelessWidget {
                                   width: 2,
                                 ),
                                 Text(
-                                  cartItem.product.currentPrice.values.first
-                                      .toString(),
+                                  cartItem.productPrice.toString(),
                                   style: Theme.of(context).textTheme.subtitle1,
                                 ),
                               ],

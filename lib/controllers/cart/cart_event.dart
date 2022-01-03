@@ -11,3 +11,11 @@ class CartInitEvent extends CartEvent {
   @override
   List<Object> get props => [];
 }
+
+class CartADDEvent extends CartEvent {
+  final CartItemModel cartitem;
+
+  CartADDEvent(this.cartitem);
+  @override
+  List<Object> get props => [];
+}

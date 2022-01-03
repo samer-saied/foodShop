@@ -3,40 +3,73 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
+import 'package:onlinefooddeliverysystem/controllers/cart/cart_bloc.dart';
 import 'package:onlinefooddeliverysystem/controllers/fav/fav_bloc.dart';
-
+import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart';
+import 'package:onlinefooddeliverysystem/models/cart_item_model.dart';
 import 'package:onlinefooddeliverysystem/models/product_model.dart';
 
 ///////////////////////         ADD TO CART Button    ///////////////////////////////
-class AddCartButtonWidget extends StatelessWidget {
+class AddCartButtonWidget extends StatefulWidget {
+  final ProductModel product;
   const AddCartButtonWidget({
     Key? key,
+    required this.product,
   }) : super(key: key);
 
   @override
+  State<AddCartButtonWidget> createState() => _AddCartButtonWidgetState();
+}
+
+class _AddCartButtonWidgetState extends State<AddCartButtonWidget> {
+  int quantity = 0;
+  @override
   Widget build(BuildContext context) {
-    return CupertinoButton(
-        color: mainColor,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              CupertinoIcons.cart_fill_badge_plus,
-              color: whiteColor,
+    return BlocBuilder<CartBloc, CartState>(
+      builder: (context, state) {
+        return CupertinoButton(
+            color: mainColor,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  CupertinoIcons.cart_fill_badge_plus,
+                  color: whiteColor,
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text("add to Cart",
+                    style: Theme.of(context).textTheme.headline3!.copyWith(
+                        // fontSize: 14,
+                        fontWeight: FontWeight.w300,
+                        color: whiteColor)),
+              ],
             ),
-            const SizedBox(
-              width: 5,
-            ),
-            Text("add to Cart",
-                style: Theme.of(context).textTheme.headline3!.copyWith(
-                    // fontSize: 14,
-                    fontWeight: FontWeight.w300,
-                    color: whiteColor)),
-          ],
-        ),
-        onPressed: () {
-          print("add to cart");
-        });
+            onPressed: () {
+              quantity += 1;
+              print(quantity);
+              ProductModel product = widget.product;
+              print(product.productId);
+              print(BlocProvider.of<ProductCubit>(context).selectedPrice);
+              CartItemModel myCartItem = CartItemModel(
+                productId: product.productId,
+                productPrice:
+                    BlocProvider.of<ProductCubit>(context).selectedPrice,
+                productTitle: product.title,
+                productUrl: product.imageUrl,
+                quantity: quantity.toString(),
+              );
+              //////////
+              ///
+              ///
+              ///
+              ///
+              ///
+              context.read<CartBloc>().add(CartADDEvent(myCartItem));
+            });
+      },
+    );
   }
 }
 
@@ -56,9 +89,6 @@ class _AddFavButtonWidgetState extends State<AddFavButtonWidget> {
   late bool isfav;
   @override
   Widget build(BuildContext context) {
-    // isfav = BlocProvider.of<FavBloc>(context)
-    //     .checkProductIsFav(widget.product.productId);
-    // print(isfav.toString() + '----------------------------------------');
     return BlocBuilder<FavBloc, FavState>(
       builder: (context, state) {
         if (state is FavloadedState) {

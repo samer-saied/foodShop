@@ -67,7 +67,7 @@ class FavBloc extends Bloc<FavEvent, FavState> {
     Emitter<FavState> emit,
   ) {
     emit(FavloadingState());
-    getLocalFavIDs(event, emit);
+    //getLocalFavIDs(event, emit);
     if (event is LoadFavProductEvent) {
       List<ProductModel> products = event.favProducts;
       favProducts.clear();

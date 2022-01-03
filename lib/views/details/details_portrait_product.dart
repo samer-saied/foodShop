@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
+import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart';
 import 'package:onlinefooddeliverysystem/models/product_model.dart';
 import 'package:onlinefooddeliverysystem/views/app/components/single_product_card_widget.dart';
 
@@ -37,7 +39,10 @@ class DetailsPortraitViewWidget extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(child: AddCartButtonWidget()),
+                    Expanded(
+                        child: AddCartButtonWidget(
+                      product: product,
+                    )),
                     SizedBox(
                       width: 10,
                     ),
@@ -264,6 +269,11 @@ class _DataProductPortraitWidgetState extends State<DataProductPortraitWidget> {
                 scrollDirection: Axis.horizontal,
                 itemCount: widget.product.currentPrice.length,
                 itemBuilder: (context, index) {
+                  String selectedPrice =
+                      widget.product.currentPrice.values.elementAt(selected);
+                  BlocProvider.of<ProductCubit>(context).selectedPrice =
+                      selectedPrice;
+
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: InkWell(

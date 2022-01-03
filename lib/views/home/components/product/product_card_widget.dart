@@ -39,7 +39,7 @@ class ProductCardWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 5.0, right: 2, left: 2),
               child: Text(
-                product.title,
+                product.title.toUpperCase(),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 textAlign: TextAlign.center,

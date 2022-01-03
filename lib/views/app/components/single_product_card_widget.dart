@@ -69,7 +69,7 @@ class SingleProductCardWidget extends StatelessWidget {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(product.title,
+                            Text(product.title.toUpperCase(),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: Theme.of(context).textTheme.subtitle1),
@@ -220,6 +220,7 @@ class _HeartFavButtonWidgetState extends State<HeartFavButtonWidget> {
       builder: (context, state) {
         if (state is FavtoggleCompelteState ||
             state is FavcheckCompelteState ||
+            state is FavloadedState ||
             state is FavInitialCompeleteState) {
           return Icon(
             //   state.favState
