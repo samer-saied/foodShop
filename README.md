@@ -1,6 +1,7 @@
 # online food delivery system
 
 A Flutter project with Firebase as BackEnd
+Available For Iphone && android Devices
 
 ## Getting Started
 
