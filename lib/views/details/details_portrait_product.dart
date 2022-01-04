@@ -157,10 +157,10 @@ class DataProductPortraitWidget extends StatefulWidget {
 }
 
 class _DataProductPortraitWidgetState extends State<DataProductPortraitWidget> {
-  int selected = 0;
-
   @override
   Widget build(BuildContext context) {
+    int selected = BlocProvider.of<ProductCubit>(context).selectedSize;
+
     return Container(
       height: MediaQuery.of(context).size.height * .60,
       decoration: BoxDecoration(
@@ -213,8 +213,10 @@ class _DataProductPortraitWidgetState extends State<DataProductPortraitWidget> {
                 "Price : ",
                 style: Theme.of(context).textTheme.headline3,
               ),
-              widget.product.prePrice.containsKey(
-                      widget.product.currentPrice.keys.elementAt(selected))
+              widget.product.prePrice.containsKey(widget
+                      .product.currentPrice.keys
+                      .elementAt(selected)
+                      .isNotEmpty)
                   ? Row(
                       children: [
                         Text(
@@ -269,10 +271,8 @@ class _DataProductPortraitWidgetState extends State<DataProductPortraitWidget> {
                 scrollDirection: Axis.horizontal,
                 itemCount: widget.product.currentPrice.length,
                 itemBuilder: (context, index) {
-                  String selectedPrice =
-                      widget.product.currentPrice.values.elementAt(selected);
-                  BlocProvider.of<ProductCubit>(context).selectedPrice =
-                      selectedPrice;
+                  // BlocProvider.of<ProductCubit>(context).selectedSize =
+                  //     selected;
 
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -280,6 +280,11 @@ class _DataProductPortraitWidgetState extends State<DataProductPortraitWidget> {
                       onTap: () {
                         setState(() {
                           selected = index;
+                          BlocProvider.of<ProductCubit>(context).selectedSize =
+                              index;
+                          print(selected);
+                          print(BlocProvider.of<ProductCubit>(context)
+                              .selectedSize);
                         });
                       },
                       child: Container(

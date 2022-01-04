@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
 import 'package:onlinefooddeliverysystem/controllers/cart/cart_bloc.dart';
+import 'package:onlinefooddeliverysystem/models/cart_item_model.dart';
 import 'package:onlinefooddeliverysystem/views/app/components/app_components.dart';
 
 import 'cart_components.dart';
@@ -44,6 +45,8 @@ class CartScreen extends StatelessWidget {
                               key: UniqueKey(),
                               direction: DismissDirection.endToStart,
                               onDismissed: (dismissDirection) {
+                                cartBloc.add(CartRemoveEvent(
+                                    cartBloc.cart.cartItems[index]));
                                 //////////
                                 ///
                                 ///

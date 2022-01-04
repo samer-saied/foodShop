@@ -36,7 +36,7 @@ class CartModel {
     cartTotal = json['cartTotal'];
     promoCode = json['promoCode'];
     cartSteps =
-        CartSteps.values.firstWhere((e) => (e.toString() == json['cartSteps']));
+        CartSteps.values.firstWhere((e) => (e.toString() == json['stateCart']));
 
     date = json['date'];
 

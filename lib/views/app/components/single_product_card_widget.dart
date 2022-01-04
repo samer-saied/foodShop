@@ -3,7 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
+import 'package:onlinefooddeliverysystem/controllers/cart/cart_bloc.dart';
 import 'package:onlinefooddeliverysystem/controllers/fav/fav_bloc.dart';
+import 'package:onlinefooddeliverysystem/models/cart_item_model.dart';
 import 'package:onlinefooddeliverysystem/models/product_model.dart';
 import 'package:onlinefooddeliverysystem/views/details/details_product_main_screen.dart';
 
@@ -155,9 +157,11 @@ class SingleProductCardWidget extends StatelessWidget {
                           ),
                           //const Spacer(),
                           ///////////   ADD to Cart Button ///////////////
-                          const Padding(
+                          Padding(
                             padding: EdgeInsets.only(right: 10.0),
-                            child: AddCartWidget(),
+                            child: AddCartWidget(
+                              product: product,
+                            ),
                           ),
                         ],
                       ),
@@ -185,6 +189,7 @@ class SingleProductCardWidget extends StatelessWidget {
 ///
 
 //////////////////////////    Heart (Fav Button) Widget  /////////////////////////////////
+// ignore: must_be_immutable
 class HeartFavButtonWidget extends StatefulWidget {
   HeartFavButtonWidget({
     Key? key,
@@ -237,8 +242,10 @@ class _HeartFavButtonWidgetState extends State<HeartFavButtonWidget> {
 
 //////////////////////////    Add to Cart Button   1   /////////////////////////////////
 class AddCartWidget extends StatelessWidget {
+  final ProductModel product;
   const AddCartWidget({
     Key? key,
+    required this.product,
   }) : super(key: key);
 
   @override
@@ -246,6 +253,13 @@ class AddCartWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         print("add to cart");
+        BlocProvider.of<CartBloc>(context).add(CartADDEvent(CartItemModel(
+            productId: product.productId,
+            productTitle: product.title,
+            productPrice: product.currentPrice.values.first,
+            productUrl: product.imageUrl,
+            productSize: product.currentPrice.keys.first,
+            quantity: '1')));
       },
       child: Container(
         decoration: BoxDecoration(

@@ -22,7 +22,7 @@ class AddCartButtonWidget extends StatefulWidget {
 }
 
 class _AddCartButtonWidgetState extends State<AddCartButtonWidget> {
-  int quantity = 0;
+  // int quantity = 0;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CartBloc, CartState>(
@@ -47,18 +47,18 @@ class _AddCartButtonWidgetState extends State<AddCartButtonWidget> {
               ],
             ),
             onPressed: () {
-              quantity += 1;
-              print(quantity);
+              // quantity += 1;
               ProductModel product = widget.product;
-              print(product.productId);
-              print(BlocProvider.of<ProductCubit>(context).selectedPrice);
+
               CartItemModel myCartItem = CartItemModel(
                 productId: product.productId,
-                productPrice:
-                    BlocProvider.of<ProductCubit>(context).selectedPrice,
+                productPrice: product.currentPrice.values.elementAt(
+                    BlocProvider.of<ProductCubit>(context).selectedSize),
                 productTitle: product.title,
                 productUrl: product.imageUrl,
-                quantity: quantity.toString(),
+                productSize: product.currentPrice.keys.elementAt(
+                    BlocProvider.of<ProductCubit>(context).selectedSize),
+                quantity: '1',
               );
               //////////
               ///

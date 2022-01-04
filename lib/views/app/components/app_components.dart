@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
 
+// ignore: must_be_immutable
 class TitleSliderWidget extends StatelessWidget {
   final String titleTxt;
   Widget prefixIcon;

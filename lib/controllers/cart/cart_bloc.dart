@@ -11,10 +11,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc() : super(CartInitial()) {
     on<CartInitEvent>(getOrCreateCart);
     on<CartADDEvent>(addToCart);
+    on<CartRemoveEvent>(removeFromCart);
   }
 
   late CartModel cart;
   late String cartId;
+  List<String> addedOnCart = [];
 
   getOrCreateCart(CartEvent event, Emitter<CartState> emit) async {
     try {
@@ -23,7 +25,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           .collection('users')
           .doc('2tAQSfvgNwQqSFiZSYF7XbQCX3r2')
           .collection('carts')
-          .where('cartSteps', isEqualTo: 'CartSteps.initialization')
+          .where('stateCart', isEqualTo: 'CartSteps.initialization')
           .get()
           .then((items) async {
         print(items.docs.length.toString() +
@@ -35,7 +37,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
               .collection('carts');
           cartId = cartCollection.doc().id;
           await cartCollection.doc(cartId).set({
-            'cartSteps': 'CartSteps.initialization',
+            'stateCart': 'CartSteps.initialization',
             'cartID': cartId,
             'cartItems': []
           });
@@ -57,40 +59,87 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     if (event is CartADDEvent) {
       try {
         emit(CartLoading());
-        List<CartItemModel> tempItems = [];
-        if (cart.cartItems.isEmpty) {
-          tempItems.add(event.cartitem);
-        }
-        for (var item in cart.cartItems) {
-          print(item.productId != event.cartitem.productId);
-          if (item.productId != event.cartitem.productId) {
-            print('----------1------------');
-            tempItems.add(item);
-          } else {
-            print('----------2------------');
-            if (item.productPrice != event.cartitem.productPrice) {
-              int newquantity = 1;
-              item.quantity = newquantity.toString();
-              tempItems.add(item);
-            } else {
-              print('----------3------------');
+        bool isFound = checkProductOnCart(
+            productId: event.cartitem.productId,
+            productSize: event.cartitem.productSize);
 
-              tempItems.add(event.cartitem);
-            }
-          }
+        if (isFound) {
+          /////
+          ///
+          ///
+        } else {
+          event.cartitem.quantity = '1';
+          cart.cartItems.add(event.cartitem);
+          cart.cartSteps = CartSteps.initialization;
+
+          addedOnCart.add(event.cartitem.productId);
         }
-        cart.cartItems = tempItems;
-        await FirebaseFirestore.instance
+        CollectionReference ref = FirebaseFirestore.instance
             .collection('users')
             .doc('2tAQSfvgNwQqSFiZSYF7XbQCX3r2')
-            .collection('carts')
-            .doc(cartId)
-            .update(cart.toJson());
+            .collection('carts');
+
+        await ref.doc(cartId).set(cart.toJson());
+        addedOnCart.add(event.cartitem.productId);
         emit(CartLoaded());
       } catch (error) {
         print('error ' + error.toString());
         emit(CartError(error.toString()));
       }
     }
+  }
+
+  removeFromCart(CartEvent event, Emitter<CartState> emit) async {
+    if (event is CartRemoveEvent) {
+      try {
+        emit(CartLoading());
+        cart.cartItems.remove(event.cartitem);
+        addedOnCart.remove(event.cartitem.productId);
+
+        CollectionReference ref = FirebaseFirestore.instance
+            .collection('users')
+            .doc('2tAQSfvgNwQqSFiZSYF7XbQCX3r2')
+            .collection('carts');
+
+        await ref.doc(cartId).set(cart.toJson());
+
+        emit(CartLoaded());
+      } catch (error) {
+        print('error ' + error.toString());
+        emit(CartError(error.toString()));
+      }
+    }
+  }
+
+  bool checkProductOnCart(
+      {required String productId, required String productSize}) {
+    if (cart.cartItems.isEmpty) {
+      print('---------1-----------');
+
+      return false;
+    } else if (cart.cartItems.isNotEmpty) {
+      for (var i = 0; i < cart.cartItems.length; i++) {
+        print(cart.cartItems[i].productSize +
+            '-----------------error-------------');
+        print(cart.cartItems.length);
+        print(cart.cartItems[i].productId);
+        if ((cart.cartItems[i].productId == productId) &&
+            (cart.cartItems[i].productSize == productSize)) {
+          print('---------2-----------');
+
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  bool checkProductOnLocal({required String productId}) {
+    for (var item in addedOnCart) {
+      if (item == productId) {
+        return true;
+      }
+    }
+    return false;
   }
 }

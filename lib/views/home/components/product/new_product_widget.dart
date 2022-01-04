@@ -1,6 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlinefooddeliverysystem/constant/colors.dart';
+import 'package:onlinefooddeliverysystem/controllers/cart/cart_bloc.dart';
+import 'package:onlinefooddeliverysystem/controllers/product/product_cubit.dart';
+import 'package:onlinefooddeliverysystem/models/cart_item_model.dart';
 import 'package:onlinefooddeliverysystem/models/product_model.dart';
 import 'package:onlinefooddeliverysystem/views/details/details_product_main_screen.dart';
 
@@ -70,7 +74,9 @@ class NewProductsWidget extends StatelessWidget {
                                 style: Theme.of(context).textTheme.subtitle1,
                               ),
                             ),
-                            AddCartSecandWidget(),
+                            AddCartSecandWidget(
+                              product: product,
+                            ),
                           ],
                         )
                       ],
@@ -124,13 +130,25 @@ class NewProductsWidget extends StatelessWidget {
 }
 
 //////////////////////////    Add to Cart Secand Button    2  /////////////////////////////////
-class AddCartSecandWidget extends StatelessWidget {
-  const AddCartSecandWidget({
+// ignore: must_be_immutable
+class AddCartSecandWidget extends StatefulWidget {
+  final ProductModel product;
+  bool clicked = false;
+
+  AddCartSecandWidget({
     Key? key,
+    required this.product,
   }) : super(key: key);
 
   @override
+  State<AddCartSecandWidget> createState() => _AddCartSecandWidgetState();
+}
+
+class _AddCartSecandWidgetState extends State<AddCartSecandWidget> {
+  @override
   Widget build(BuildContext context) {
+    widget.clicked = BlocProvider.of<CartBloc>(context)
+        .checkProductOnLocal(productId: widget.product.productId);
     return Container(
       decoration: BoxDecoration(
         color: backgroundColor,
@@ -145,6 +163,20 @@ class AddCartSecandWidget extends StatelessWidget {
       child: InkWell(
         onTap: () {
           print("add to cart 2");
+
+          BlocProvider.of<CartBloc>(context).add(CartADDEvent(CartItemModel(
+              productId: widget.product.productId,
+              productPrice: widget.product.currentPrice.values.elementAt(
+                  BlocProvider.of<ProductCubit>(context).selectedSize),
+              productSize: widget.product.currentPrice.keys.elementAt(
+                  BlocProvider.of<ProductCubit>(context).selectedSize),
+              productTitle: widget.product.title,
+              productUrl: widget.product.imageUrl,
+              quantity: '1')));
+
+          setState(() {
+            widget.clicked = !widget.clicked;
+          });
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -162,11 +194,17 @@ class AddCartSecandWidget extends StatelessWidget {
               const SizedBox(
                 width: 5,
               ),
-              Text("add to cart",
-                  style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: mainColor)),
+              widget.clicked
+                  ? Text("added",
+                      style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: mainColor))
+                  : Text("add to cart",
+                      style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: mainColor)),
             ],
           ),
         ),

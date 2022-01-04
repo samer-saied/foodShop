@@ -28,7 +28,7 @@ class SingleCartCardWidget extends StatelessWidget {
         },
         //////// Card Size & shap //////////////////
         child: Container(
-          height: 80,
+          height: 120,
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -40,7 +40,7 @@ class SingleCartCardWidget extends StatelessWidget {
               //////// ListTile Image //////////////////
               Container(
                 child: CachedNetworkImage(
-                  height: 80,
+                  height: 120,
                   width: MediaQuery.of(context).size.width * .25,
                   imageUrl: cartItem.productUrl,
                   fit: BoxFit.cover,
@@ -57,7 +57,11 @@ class SingleCartCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ////////// Title  //////////////////
-                    Text(cartItem.productTitle.toUpperCase(),
+                    Text('${cartItem.productTitle.toUpperCase()}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.subtitle1),
+                    Text('Size : ${cartItem.productSize.toUpperCase()}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.subtitle1),

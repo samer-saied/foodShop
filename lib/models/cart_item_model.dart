@@ -3,6 +3,7 @@ class CartItemModel {
   final String productTitle;
   final String productPrice;
   final String productUrl;
+  String productSize;
   String quantity;
   String? total;
 
@@ -11,6 +12,7 @@ class CartItemModel {
       required this.productTitle,
       required this.productPrice,
       required this.productUrl,
+      required this.productSize,
       required this.quantity}) {
     this.total = _calculateTotalItem().toString();
   }
@@ -21,6 +23,7 @@ class CartItemModel {
         productTitle = json['productTitle'],
         productPrice = json['productPrice'],
         productUrl = json['productUrl'],
+        productSize = json['productSize'],
         quantity = json['quantity'] ?? 1,
         total = json['total'];
 
@@ -31,6 +34,7 @@ class CartItemModel {
       "productPrice": productPrice,
       "productUrl": productUrl,
       "quantity": quantity,
+      "productSize": productSize,
       "total": _calculateTotalItem().toString(),
     };
   }

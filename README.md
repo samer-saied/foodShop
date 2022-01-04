@@ -7,14 +7,19 @@ A Flutter project with Firebase as BackEnd
 # Screen Shot
 
 
-### Landscape View
+### Portrait View
 
 | #1 | #2 | #3 |
 | :---: | :---: | :---: |
-|![Screenshot_1639752300](https://user-images.githubusercontent.com/46113474/146562413-8f248c12-3346-4fee-913a-b1befa7424dc.png)|![Screenshot_1639752314](https://user-images.githubusercontent.com/46113474/146562529-a5c06039-f57b-464f-8bf9-61ad59c1c384.png)|![Screenshot_1639752324](https://user-images.githubusercontent.com/46113474/146562580-91a02d73-07d5-428f-9089-284ae4fdc773.png)|
+|![Simulator Screen Shot - iPhone 13 Pro - 2022-01-04 at 07 46 38](https://user-images.githubusercontent.com/46113474/148015419-164f54eb-fcf5-4d0e-8638-02cd9cd8e89c.png) |![Simulator Screen Shot - iPhone 13 Pro - 2022-01-04 at 07 46 43](https://user-images.githubusercontent.com/46113474/148015437-1e7a8940-158f-4450-8c04-5b23e069546b.png) |![Simulator Screen Shot - iPhone 13 Pro - 2022-01-04 at 07 46 52](https://user-images.githubusercontent.com/46113474/148015446-fc4e8cbd-a0da-4be5-b102-8beba07c0969.png)
+|![Simulator Screen Shot - iPhone 13 Pro - 2022-01-04 at 07 46 58](https://user-images.githubusercontent.com/46113474/148015450-9d561e9d-0c0c-4ce2-abc9-92b3bbad9c08.png) |![Simulator Screen Shot - iPhone 13 Pro - 2022-01-04 at 07 47 01](https://user-images.githubusercontent.com/46113474/148015478-7b7c0e43-d14f-4c3c-9a89-19ca89697ce7.png) |![Simulator Screen Shot - iPhone 13 Pro - 2022-01-04 at 07 47 04](https://user-images.githubusercontent.com/46113474/148016160-76376025-46fe-40fc-a91d-19961e0c81c6.png)
+|![Simulator Screen Shot - iPhone 13 Pro - 2022-01-04 at 07 47 09](https://user-images.githubusercontent.com/46113474/148015512-88973166-840e-431d-980d-b73d35ebe308.png) |![Simulator Screen Shot - iPhone 13 Pro - 2022-01-04 at 07 47 13](https://user-images.githubusercontent.com/46113474/148015519-1e3fd170-d83b-40e5-8ca6-2159af4c707f.png) |![Simulator Screen Shot - iPhone 13 Pro - 2022-01-04 at 07 47 17](https://user-images.githubusercontent.com/46113474/148015529-305d844e-6278-4b48-bda6-036cc3109a8d.png)
+|![Simulator Screen Shot - iPhone 13 Pro - 2022-01-04 at 07 47 20](https://user-images.githubusercontent.com/46113474/148015545-64ff68de-6b32-448b-be33-1657993173cb.png) |![Simulator Screen Shot - iPhone 13 Pro - 2022-01-04 at 07 47 29](https://user-images.githubusercontent.com/46113474/148015548-40645b99-ee12-4a7a-8bbd-74942c31fe7d.png) |![Simulator Screen Shot - iPhone 13 Pro - 2022-01-04 at 07 48 01](https://user-images.githubusercontent.com/46113474/148016208-2d4a7722-9723-406d-9c13-f21d6cf8b4f7.png)
+
+|
 
 
-### Portrait View
+### Landscape View
 
 | #1 | #2 | #3 |
 | :---: | :---: | :---: |

@@ -13,7 +13,8 @@ class ProductCubit extends Cubit<ProductState> {
   List<ProductModel> newProducts = [];
   List<ProductModel> selectedProduct = [];
   List<ProductModel> selectedProductByCat = [];
-  String selectedPrice = '';
+
+  int selectedSize = 0;
 
   getProducts() async {
     if (products.isEmpty) {

@@ -19,3 +19,14 @@ class CartADDEvent extends CartEvent {
   @override
   List<Object> get props => [];
 }
+
+class CartRemoveEvent extends CartEvent {
+  final CartItemModel cartitem;
+
+  CartRemoveEvent(this.cartitem);
+  @override
+  List<Object> get props => [];
+}
+
+
+//CartRemoveEvent
