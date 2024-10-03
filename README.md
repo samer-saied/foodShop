@@ -30,5 +30,5 @@ Available For Iphone && android Devices
 
 
 # Created By Samer Saied
-# https://cv2024.vercel.app/
+# https://samer-saied.vercel.app/
 # Mob : 002 010 10 199 177
